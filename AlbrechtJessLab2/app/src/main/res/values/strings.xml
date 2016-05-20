@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AlbrechtJessLab2</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="photosArray">
+        <item>@drawable/fred</item>
+        <item>@drawable/cindy</item>
+        <item>@drawable/kate</item>
+        <item>@drawable/keith</item>
+        <item>@drawable/matt</item>
+        <item>@drawable/rickey</item>
+    </string-array>
+</resources>

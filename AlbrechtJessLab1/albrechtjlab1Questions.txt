@@ -1,0 +1,58 @@
+Questions:
+1. Run your app on your API 16 emulation. Examine the notifications by pulling down the
+notification bar. Which class are they from and do they indicate existing application state or
+not?
+
+They are from Main Activity and they indicate which methods and states have been run.
+
+2. Dismiss the current notifications at this point so you don’t get confused. Press Ctrl+F11 to
+rotate the Android and examine the system notifications again. In what order were the
+lifecycle methods that you instrumented called?
+
+OnPause, OnSavedInstanceState, OnStop , onCreate With state, viewHierarchyState, OnStart  
+
+3. Do you notice anything odd about the notifications you posted from onCreate? What keys
+indicating state information are stored in the Bundle passed to onCreate? It’s not anything
+you stored in the Bundle, so can you guess what that content represents?
+
+viewHierarchyState which probably checks the hierarchy of the app and whether things rotate or not .
+
+4. Rotate back. Clear the notifications. Enter a name and press the Take Survey button. Enter an
+age and press Submit, taking you back to your main activity. Was your activity re-created
+this time? How do you know? 
+
+No create method was called
+
+5. Clear the notifications. Press the Goto Website button and share the page with your App.
+What does the content of your main screen, along with the system notifications, tell you
+about this instance of your app?
+
+It was closed after I left to the website, and was re-created when I chose to share to it. 
+
+6. Press the Android back button. Where does that take you?
+
+Back to the website
+
+Press it again. Where are you now?
+
+Back at my app
+
+Press it again. Where are you now?
+
+Back at the main menu
+ 
+Does all of that make sense to you? 
+Yes 
+ 
+7. Repeat the experiment in step 5, making sure that the First Name field contains an entry
+before going to the website. This time, after sharing the page back to your app, press the
+Android recent apps button. Does the list of recent apps match what you would expect given
+your previous results from steps 5 and 6? 
+
+No browser and I see my app with my name, so kind of unexpected
+
+Press the Android home button, and then press the
+recent apps button again? Now does it match your expectations? Note carefully the app
+names in addition to the app pictures.
+
+Yes it has the browser and the first launched app.
