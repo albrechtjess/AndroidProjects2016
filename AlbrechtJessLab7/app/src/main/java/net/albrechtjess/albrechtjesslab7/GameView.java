@@ -1,6 +1,8 @@
 package net.albrechtjess.albrechtjesslab7;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -35,6 +37,9 @@ public class GameView extends View {
     float ylogical;
     float xScaleFactor;
     float yScaleFactor;
+    Integer coils = 11;
+    String massShape = "Rectangle";
+    Integer displacement = 0;
     // constructor
 
     public GameView(Context context) {
@@ -50,6 +55,16 @@ public class GameView extends View {
     public GameView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         commonInit();
+    }
+
+    public void setPreferences(Double stiffness, Integer springs, Integer displacement, String shape)
+    {
+        coils = springs;
+        massShape = shape;
+        this.displacement = displacement;
+        k = stiffness;
+        velocity = 0;
+        y = 0;
     }
 
     private void commonInit() {
@@ -79,7 +94,7 @@ public class GameView extends View {
 // System.currentTimeMillis()
 // schedule a full or partial redraws as appropriate, e.g.:
 
-        ypp = g - ((y * k) / mass);
+        ypp = g - (((y  + this.displacement) * k) / mass);
         //Log.wtf("DEBUG", "ypp: " + ypp) ;
         Delta_T = TIMER_MSEC / 1000.0;
         //Log.wtf("DEBUG", "Delta_T: " + Delta_T) ;
@@ -98,10 +113,28 @@ public class GameView extends View {
         canvas.scale(xScaleFactor, yScaleFactor);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.rgb(0, 0, 0));
-        canvas.drawRect(200f, 400f + ylogical, 400f, 500f + ylogical, paint);
-        float r = (400f + ylogical) / 9;
+        if(massShape.equals("Rectangle"))
+        {
+            canvas.drawRect(200f, 400f + ylogical, 400f, 500f + ylogical, paint);
+        }
+        else if(massShape.equals("Rounded Circle"))
+        {
+            RectF oval = new RectF(200f, 400f + ylogical, 400f, 500f + ylogical);
+            canvas.drawOval(oval, paint);
+        }
+        else if(massShape.equals("Circle"))
+        {
+            canvas.drawCircle(300f, 400f + ylogical, 50f, paint);
+        }
+        else if(massShape.equals("Picture"))
+        {
+            RectF pic = new RectF(200f, 400f + ylogical, 400f, 500f + ylogical);
+            Bitmap picture = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher);
+            canvas.drawBitmap(picture,null, pic, paint);
+        }
+        float r = ((400f + ylogical) / (coils + 1));
         float top = 0.0f;
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < coils; i++) {
             RectF rect = new RectF(280f, top, 320f, top + 2 * r);
             canvas.drawOval(rect, paint);
             top += r;

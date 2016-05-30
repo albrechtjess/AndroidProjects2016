@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -63,6 +64,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         ;
         // load the XML definition of our preferences
         addPreferencesFromResource(R.xml.preferences);
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "numCoils");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "displacement");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "springStiffness");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "massShape");
     }
 
 
@@ -93,24 +98,40 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Preference pref = findPreference(key);
+        switch (key) {
+            // this one is custom and supports ints
+            case "numCoils":
+                pref.setSummary(Integer.
+                        toString(sharedPreferences.getInt(key, 11)));
+                // and maybe do some more stuff
+                break;
+            case "displacement":
+                pref.setSummary(Integer.
+                        toString(sharedPreferences.getInt(key, 11)));
+                break;
+            case "springStiffness":
+                pref.setSummary(sharedPreferences.getString(key, "1.5"));
+                break;
 
+            default:
+                pref.setSummary(sharedPreferences.getString(key, ""));
+
+        }
     }
-
     @Override
-    public void onPause()
-    {
-        super.onPause();
-        GameView gameView = (GameView) getView().findViewById(R.id.gameView);
-        gameView.pauseGame();
+    public void onResume() {
+        super.onResume() ;
+        getPreferenceScreen().getSharedPreferences().
+                registerOnSharedPreferenceChangeListener(this) ;
+    }
+    @Override
+    public void onPause() {
+        super.onPause() ;
+        getPreferenceScreen().getSharedPreferences().
+                unregisterOnSharedPreferenceChangeListener(this) ;
     }
 
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        GameView gameView = (GameView) getView().findViewById(R.id.gameView);
-        gameView.resumeGame();
-    }
 
     /**
      * This interface must be implemented by activities that contain this

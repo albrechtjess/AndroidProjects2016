@@ -19,13 +19,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".PreferencesActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.albrechtjess.albrechtjesslab7.MainActivity" />
         </activity>
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

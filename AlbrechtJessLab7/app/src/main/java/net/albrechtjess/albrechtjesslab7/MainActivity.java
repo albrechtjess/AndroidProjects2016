@@ -1,6 +1,9 @@
 package net.albrechtjess.albrechtjesslab7;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     // filename and parameter keys:
     private static final String SETTINGS = "SETTINGS" ;
     public static final String FIRST_USE = "FIRST_USE" ;
-
+    public GameView gameView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         }
         */
         //if(savedInstanceState != null){startStopBtn.setText("Stop");}
-        final GameView gameView = (GameView) findViewById(R.id.gameView);
+        gameView = (GameView) findViewById(R.id.gameView);
         startStopBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(startStopBtn.getText().equals("Start"))
@@ -63,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume()
+    {
+        super.onResume();
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        Double springStiffness = Double.parseDouble(pref.getString("springStiffness", "1.5"));
+        Integer displacement = pref.getInt("displacement", 11),
+                numCoils = pref.getInt("numCoils", 11);
+        String shape = pref.getString("massShape", "Rectangle");
+        gameView.setPreferences(springStiffness, numCoils, displacement, shape);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -71,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class );
+            startActivity(settingsIntent);
             return true;
         }
 
