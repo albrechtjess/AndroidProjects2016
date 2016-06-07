@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+    <EditTextPreference
+        android:key="scudsPerRound"
+        android:title="Number of scuds per level (Default: 20)"
+        android:summary=""
+        android:defaultValue="20"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <EditTextPreference
+        android:key="scudSpeed"
+        android:title="Scud Speed (Default: 5)"
+        android:summary=""
+        android:defaultValue="5"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <EditTextPreference
+        android:key="timePerScud"
+        android:title="Time between Scuds (Default: 30)"
+        android:summary=""
+        android:defaultValue="30"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <EditTextPreference
+        android:key="missilesPerRound"
+        android:title="Number of Missiles (Default: 30)"
+        android:summary=""
+        android:defaultValue="30"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <EditTextPreference
+        android:key="missileSpeed"
+        android:title="Missile Speed (Default: 25)"
+        android:summary=""
+        android:defaultValue="25"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <EditTextPreference
+        android:key="explosionSpeed"
+        android:title="Explosion Speed (Default: 2)"
+        android:summary=""
+        android:defaultValue="2"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <EditTextPreference
+        android:key="explosionRadius"
+        android:title="Explosion Radius (Default: 50)"
+        android:summary=""
+        android:defaultValue="50"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="3" />
+    <!--
+    <net.albrechtjess.albrechtjessmisslecommand.NumberPickerPreference
+        android:key="scudsPerRound"
+        android:title="Number of scuds per level"
+        android:summary=""
+        android:defaultValue="20"
+        custom:max="14"
+        custom:min="8"
+        custom:wrap="false"
+        />
+    <net.albrechtjess.albrechtjessmisslecommand.NumberPickerPreference
+        android:key="displacement"
+        android:title="Initial Displacement"
+        android:summary=""
+        android:defaultValue="0"
+        custom:max="16"
+        custom:min="0"
+        custom:wrap="false"
+        />
+    <ListPreference
+        android:title="Mass Shape"
+        android:key="massShape"
+        android:defaultValue="Rectangle"
+        android:entries="@array/prefMassShape"
+        android:entryValues="@array/prefMassShape"
+        android:summary="Preferred Shape: %s"
+        />
+    /-->
+</PreferenceScreen>

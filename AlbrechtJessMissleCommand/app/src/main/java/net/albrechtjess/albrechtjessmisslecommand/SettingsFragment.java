@@ -64,10 +64,13 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         ;
         // load the XML definition of our preferences
         addPreferencesFromResource(R.xml.preferences);
-        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "numCoils");
-        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "displacement");
-        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "springStiffness");
-        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "massShape");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "scudSpeed");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "scudsPerRound");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "timePerScud");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "missilesPerRound");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "missileSpeed");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "explosionSpeed");
+        onSharedPreferenceChanged(getPreferenceScreen().getSharedPreferences(), "explosionRadius");
     }
 
 
@@ -101,17 +104,27 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Preference pref = findPreference(key);
         switch (key) {
             // this one is custom and supports ints
-            case "numCoils":
-                pref.setSummary(Integer.
-                        toString(sharedPreferences.getInt(key, 11)));
+            case "scudSpeed":
+                pref.setSummary(sharedPreferences.getString(key, "5"));
                 // and maybe do some more stuff
                 break;
-            case "displacement":
-                pref.setSummary(Integer.
-                        toString(sharedPreferences.getInt(key, 11)));
+            case "scudsPerRound":
+                pref.setSummary(sharedPreferences.getString(key, "20"));
                 break;
-            case "springStiffness":
-                pref.setSummary(sharedPreferences.getString(key, "1.5"));
+            case "missileSpeed":
+                pref.setSummary(sharedPreferences.getString(key, "25"));
+                break;
+            case "explosionSpeed":
+                pref.setSummary(sharedPreferences.getString(key, "2"));
+                break;
+            case "explosionRadius":
+                pref.setSummary(sharedPreferences.getString(key, "50"));
+                break;
+            case "missilesPerRound":
+                pref.setSummary(sharedPreferences.getString(key, "30"));
+                break;
+            case "timePerScud":
+                pref.setSummary(sharedPreferences.getString(key, "30"));
                 break;
 
             default:

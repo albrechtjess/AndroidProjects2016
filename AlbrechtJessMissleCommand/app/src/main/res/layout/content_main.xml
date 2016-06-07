@@ -16,9 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gameView"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/startStopBtn" />
+        android:layout_above="@+id/startStopBtn"
+        android:layout_below="@+id/numScuds" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,6 +26,67 @@
         android:text="Start"
         android:id="@+id/startStopBtn"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restart"
+        android:id="@+id/restartBtn"
+        android:layout_below="@+id/gameView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Missiles: "
+        android:id="@+id/numMissiles"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Scuds: "
+        android:id="@+id/numScuds"
+        android:layout_below="@+id/numMissiles"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Score: "
+        android:id="@+id/score"
+        android:layout_alignBaseline="@+id/numMissiles"
+        android:layout_alignBottom="@+id/numMissiles"
+        android:layout_toLeftOf="@+id/startStopBtn"
+        android:layout_toStartOf="@+id/startStopBtn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Level: "
+        android:id="@+id/levelNum"
+        android:layout_above="@+id/gameView"
+        android:layout_alignLeft="@+id/score"
+        android:layout_alignStart="@+id/score"
+        android:layout_alignTop="@+id/numScuds" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="GAME OVER!"
+        android:id="@+id/gameOverText"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp" />
+        android:visibility="invisible" />
 </RelativeLayout>
