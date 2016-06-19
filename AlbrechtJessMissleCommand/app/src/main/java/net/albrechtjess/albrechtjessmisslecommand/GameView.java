@@ -33,7 +33,7 @@ import java.util.Random;
  */
 public class GameView extends View implements MediaPlayer.OnCompletionListener {
     private Context context;
-    private static final int TIMER_MSEC = 70; // or whatever
+    private static final int TIMER_MSEC = 60; // or whatever
     protected boolean m_isRunning = false;
     private Handler m_handler;
     private Runnable m_timer;
@@ -224,11 +224,9 @@ public class GameView extends View implements MediaPlayer.OnCompletionListener {
             score += ((remainingMissiles * 40) + (cities.size()*100));
             playClip(mpGameOver,R.raw.levelup);
             deadScuds = 0;
-            scudsPerRound += 5;
             remainingScuds = scudsPerRound;
-            missilesPerRound = 30;
             remainingMissiles = missilesPerRound;
-            scudSpeed += 1;
+            scudSpeed += 5;
             level++;
             Button startStopBtn = (Button) ((Activity)context).findViewById(R.id.startStopBtn);
             startStopBtn.setText("Start");

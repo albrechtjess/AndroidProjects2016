@@ -3,7 +3,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto">
     <EditTextPreference
         android:key="scudsPerRound"
-        android:title="Number of scuds per level (Default: 20)"
+        android:title="Scuds (Max 30, Min 5, Def 20)"
         android:summary=""
         android:defaultValue="20"
         android:inputType="number"
@@ -11,7 +11,7 @@
         android:maxLength="3" />
     <EditTextPreference
         android:key="scudSpeed"
-        android:title="Scud Speed (Default: 5)"
+        android:title="Starting Scud Speed (Default: 5)"
         android:summary=""
         android:defaultValue="5"
         android:inputType="number"

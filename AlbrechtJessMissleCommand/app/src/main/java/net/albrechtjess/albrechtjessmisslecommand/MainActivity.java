@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     @Override
+    protected void onPause()
+    {
+        super.onPause();
+        gameView.pauseGame();
+    }
+
+    @Override
     public void onResume()
     {
         super.onResume();
@@ -82,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 explosionRadius = Integer.valueOf(pref.getString("explosionRadius", "50")),
                 missilesPerRound = Integer.valueOf(pref.getString("missilesPerRound", "30")),
                 timePerScud = Integer.valueOf(pref.getString("timePerScud", "30"));
+
         gameView.setPreferences(scudSpeed, scudsPerRound, missileSpeed, explosionSpeed,
                 explosionRadius, missilesPerRound, timePerScud);
     }

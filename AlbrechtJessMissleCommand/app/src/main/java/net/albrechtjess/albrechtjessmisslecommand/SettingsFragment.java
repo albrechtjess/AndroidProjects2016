@@ -109,7 +109,21 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 // and maybe do some more stuff
                 break;
             case "scudsPerRound":
-                pref.setSummary(sharedPreferences.getString(key, "20"));
+                //max and min in if statement
+                Integer scudsPerRound = Integer.valueOf(sharedPreferences.getString(key, "20"));
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                if(scudsPerRound > 30){
+                    editor.putString("scudsPerRound", "30");
+                    pref.setSummary("30");
+                    editor.apply();
+                }
+                else if(scudsPerRound < 5)
+                {
+                    editor.putString("scudsPerRound", "5");
+                    pref.setSummary("5");
+                    editor.apply();
+                }
+                else pref.setSummary(scudsPerRound.toString());
                 break;
             case "missileSpeed":
                 pref.setSummary(sharedPreferences.getString(key, "25"));
